@@ -6,11 +6,14 @@ import 'tailwindcss/tailwind.css';
 
 function App() {
   return (
-    <div className="App bg-red-300">
-      <Categoria nombre="Matematica"/>
-      <Categoria nombre="Bases de Datos"/>
-      <Categoria nombre="Redes"/>
-      <Categoria nombre="Arqui de Software"/>
+    <div className="flex flex-col h-screen">
+      <div className='flex flex-row flex-grow'>
+        <Categoria nombre="Matematica" descripcion='calculadora de derivadas: https://www.calculadora-de-derivadas.com/' tareas={["guia derivadas", "guia integrales", "limites"]}/>
+        <Categoria nombre="Bases de Datos"/>
+        <Categoria nombre="Redes"/>
+        <Categoria nombre="Arqui de Software" tareas={["leer roy fielding", "aprender REST", "aprender QAs"]} />
+        <Categoria nombre="Arqui de Software 2"/>
+      </div>
     </div>
   );
 }
