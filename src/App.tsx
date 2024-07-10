@@ -5,17 +5,56 @@ import Categoria from './components/Categoria';
 import 'tailwindcss/tailwind.css';
 
 function App() {
+
+
+  //////////////////////////////////////
+  // Backend provisorio
+  interface CategoriaProps {
+    nombre: string;
+    descripcion?: string;
+    tareas?: string[];       // TODO: Cambiar a Tarea[]
+    pendientes?: string[];   // TODO: Cambiar a Tarea[]
+}
+
+  let matematica: CategoriaProps = {
+    nombre: "Matematica",
+    descripcion: "calculadora de derivadas: https://www.calculadora-de-derivadas.com/",
+    tareas: ["guia derivadas", "guia integrales", "limites"]
+  }
+
+  let arquiSoftware: CategoriaProps = {
+    nombre: "Arqui de Software",
+    tareas: ["leer roy fielding", "aprender REST", "aprender QAs"]
+  }
+
+  let BaseDeDatos: CategoriaProps = {
+    nombre: "Bases de Datos",
+    tareas: ["normalizacion"]
+  }
+
+  let categorias = [matematica, arquiSoftware, BaseDeDatos];
+
+
+  //////////////////////////////////////
+
+
   return (
     <div className="flex flex-col h-screen">
       <div className='flex flex-row flex-grow'>
-        <Categoria nombre="Matematica" descripcion='calculadora de derivadas: https://www.calculadora-de-derivadas.com/' tareas={["guia derivadas", "guia integrales", "limites"]}/>
-        <Categoria nombre="Bases de Datos"/>
-        <Categoria nombre="Redes"/>
-        <Categoria nombre="Arqui de Software" tareas={["leer roy fielding", "aprender REST", "aprender QAs"]} />
-        <Categoria nombre="Arqui de Software 2"/>
+        {categorias.map((categoria, index) => (
+          <Categoria  nombre={categoria.nombre} 
+                      descripcion={categoria.descripcion} 
+                      tareas={categoria.tareas} 
+                      key={index}/>
+        ))}
+
       </div>
+
     </div>
   );
 }
+
+
+
 
 export default App;

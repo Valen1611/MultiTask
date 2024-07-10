@@ -12,16 +12,16 @@ function Categoria(props: CategoriaProps) {
             {props.descripcion}
         </div>
 
-            <div className="px-4 flex-grow ">
+            <div className="px-4 flex-grow">
                 <ul>
                     {props.tareas?.map((tarea, index) => (
                         <div className="hover:bg-indigo-500">
-                            <li key={index}> • {tarea}  
-                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                    onClick={() => {console.log("click en ",tarea)}}
-                                    >.</button>
+                            <li key={index}> • {tarea} 
+                            <input  id="c1"
+                                    type="checkbox" 
+                                    className="h-8 w-8 cursor-pointer rounded-full border-lime-300 bg-lime-100 text-lime-600 focus:ring-lime-200"
+                                    onClick={() => {console.log("click en ",tarea)}} />                             
                             </li>
-
                         </div>
                     ))}
                 </ul>
