@@ -1,18 +1,21 @@
 
 function Categoria(props: CategoriaProps) {
     return (
-        <div className="flex flex-col px-2 box-decoration-slice bg-gradient-to-b from-indigo-600 to-pink-500 border-4 border-black text-white">
-            
-            <div className="flex justify-between items-center">
-                {props.nombre}
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">+</button>
+        <div className="flex flex-col px-2 box-decoration-slice bg-sky-200 text-black rounded-lg shadow">
+         <div className="p-2">
+        <center>
+            <div className="inline-block px-4 py-2 bg-white rounded-md shadow">
+                <span className="font-bold text-lg text-indigo-700">{props.nombre}</span>
             </div>
+        </center>
+        {/* <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">+</button> */}
+    </div>
 
-        <div className="box-decoration-slice border-2 border-black">
+        <div className="box-decoration-slice">
             {props.descripcion}
         </div>
 
-            <div className="px-4 flex-grow">
+            <div>
                 <ul>
                     {props.tareas?.map((tarea, index) => (
                         <div className="hover:bg-indigo-500">
@@ -26,7 +29,7 @@ function Categoria(props: CategoriaProps) {
                     ))}
                 </ul>
 
-                </div>
+            </div>
         
       </div>
     );
