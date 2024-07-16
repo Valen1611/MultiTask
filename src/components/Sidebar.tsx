@@ -8,18 +8,28 @@ import { DiAptana } from "react-icons/di";
 import { BiSolidUserCircle } from "react-icons/bi";
 import { BiCalendarEdit } from "react-icons/bi";
 import { BiCalendar } from "react-icons/bi";
+import { MdLightbulbOutline } from "react-icons/md";
+import { MdLightbulb } from "react-icons/md";
+import { HiClipboardList } from "react-icons/hi";
 
-const Navbar = () => {
+const Navbar = (props: any) => {
   const [nav, setNav] = useState(false);
+  const [theme, setTheme] = useState("light");
 
   const menuItems = [
-    { icon: <BiCalendar size={25} className="mr-4" />, text: "Calendar" },
-    { icon: <BiCalendarEdit size={25} className="mr-4" />, text: "Edit Categories" },
-    { icon: <DiAptana size={25} className="mr-4" />, text: "Settings" },
-    { icon: <BiSolidUserCircle size={25} className="mr-4" />, text: "Account" },
+    { icon: <HiClipboardList size={25} className="mr-4"/>, text: "ToDoLists", href: "todo"},
+    { icon: <BiCalendar size={25} className="mr-4" />, text: "Calendar" , href: "calendar"},
+    { icon: <BiCalendarEdit size={25} className="mr-4" />, text: "Edit Categories", href: "edit"},
+    { icon: <DiAptana size={25} className="mr-4" />, text: "Settings", href: "settings"},
+    { icon: <BiSolidUserCircle size={25} className="mr-4" />, text: "Account", href: "account" },
+    { icon:   theme==="light" ? 
+              <MdLightbulbOutline size={25} className="mr-4" /> : 
+              <MdLightbulb size ={25} className="mr-4"/>,
+              text: "Theme" },
   ];
 
   return (
+    <>
     <div className="max-w mx-auto flex justify-between items-center p-4 shadow-md">
       {/* Left side */}
       <div className="flex items-center">
@@ -59,12 +69,15 @@ const Navbar = () => {
         </h2>
         <nav>
           <ul className="flex flex-col p-4 text-gray-800">
-            {menuItems.map(({ icon, text }, index) => {
+            {menuItems.map(({ icon, text, href}, index) => {
               return (
                 <div key={index} className=" py-4">
-                  <li className="text-xl flex cursor-pointer rounded-md mx-auto p-2 hover:bg-sky-200">
+                  <a
+                  key = {index}
+                  href = {href} 
+                  className="text-xl flex cursor-pointer rounded-md mx-auto p-2 hover:bg-sky-200">
                     {icon} {text}
-                  </li>
+                  </a>
                 </div>
               );
             })}
@@ -72,6 +85,8 @@ const Navbar = () => {
         </nav>
       </div>
     </div>
+      {props.children}
+      </>  
   );
 };
 
