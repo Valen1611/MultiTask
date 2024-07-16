@@ -28,20 +28,18 @@ export function ListasPage() {
   }
 
   let categorias = [matematica, arquiSoftware, BaseDeDatos];
-
-
   //////////////////////////////////////
  
   return (
     <div className="flex flex-col h-screen">
-    <div className='flex flex-row flex-grow'>
-      {categorias.map((categoria, index) => (
-        <Categoria  nombre={categoria.nombre} 
-                    descripcion={categoria.descripcion} 
-                    tareas={categoria.tareas} 
-                    key={index}/>
-      ))}
-    </div>
+      <div className='flex flex-row flex-grow'>
+        {categorias.map((categoria, index) => (
+          <Categoria  nombre={categoria.nombre} 
+                      descripcion={categoria.descripcion} 
+                      tareas={categoria.tareas} 
+                      key={index}/>
+        ))}
+      </div>
   </div>
   );
 

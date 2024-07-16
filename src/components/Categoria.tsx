@@ -7,20 +7,25 @@ function Categoria(props: CategoriaProps) {
         setChecked(!checked);
     };
     return (
-        <div className="flex flex-col px-2 box-decoration-slice bg-sky-200 text-black rounded-lg shadow">
-         <div className="p-2">
-        <center>
-            <div className="inline-block px-4 py-2 bg-white rounded-md shadow">
-                <span className="font-bold text-lg text-indigo-700">{props.nombre}</span>
+        <div className="p-2 box-decoration-slice bg-sky-200 text-black rounded-lg shadow">
+            {/*Nombre*/}
+            <center>
+                <div className="inline-block px-4 py-2 bg-white rounded-md shadow">
+                    <span className="font-bold text-lg text-indigo-700">{props.nombre}</span>
+                    <input  id="c1"
+                            type="checkbox"
+                            checked={checked}
+                            className=" h-8 w-8 cursor-pointer rounded-lg border-lime-300 bg-lime-100 text-lime-600 focus:ring-lime-200"
+                            onClick={() => {console.log("click en ", props.nombre)}} />
+                </div>
+            </center> 
+
+            {/*Descripcion*/}
+            <div className="box-decoration-slice">
+                {props.descripcion}
             </div>
-        </center>
-        {/* <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">+</button> */}
-    </div>
-
-        <div className="box-decoration-slice">
-            {props.descripcion}
-        </div>
-
+            
+            {/*Tareas*/}
             <div>
                 <ul>
                     {props.tareas?.map((tarea, index) => (
@@ -48,10 +53,9 @@ function Categoria(props: CategoriaProps) {
                         
                     ))}
                 </ul>
-
             </div>
-        
-      </div>
+            
+        </div>
     );
 }
 
