@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AgregarTarea from "./AgregarTarea";
 
 function Categoria(props: CategoriaProps) {
     const [checked, setChecked] = useState(false);
@@ -12,12 +13,8 @@ function Categoria(props: CategoriaProps) {
             <center>
                 <div className="inline-block px-4 py-2 bg-white rounded-md shadow">
                     <span className="font-bold text-lg text-indigo-700">{props.nombre}</span>
-                    <input  id="c1"
-                            type="checkbox"
-                            checked={checked}
-                            className=" h-8 w-8 cursor-pointer rounded-lg border-lime-300 bg-lime-100 text-lime-600 focus:ring-lime-200"
-                            onClick={() => {console.log("click en ", props.nombre)}} />
                 </div>
+                
             </center> 
 
             {/*Descripcion*/}
@@ -54,7 +51,13 @@ function Categoria(props: CategoriaProps) {
                     ))}
                 </ul>
             </div>
-            
+        
+            <div className="flex justify-center py-3">
+
+            <AgregarTarea nombre={props.nombre}/>
+    
+                        </div>
+
         </div>
     );
 }
