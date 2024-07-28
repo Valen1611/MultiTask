@@ -56,6 +56,27 @@ export function ListasPage() {
     
   }
 
+  function eliminarTarea(tarea: string, idCategoria: number) {
+    console.log("eliminar tarea", tarea, "en", idCategoria);
+    const categoriaActualizada = categorias?.map((categoria) => {
+      console.log(categoria.id, idCategoria);
+      if (categoria.id === idCategoria) {
+        console.log("hola?")
+        const index = categoria.tareas?.indexOf(tarea) ?? -1;
+
+        if (index !== -1) {
+          categoria.tareas?.splice(index, 1);
+        }
+        
+      }
+      return categoria;
+    });
+
+    console.log("categoriaActualizada", categoriaActualizada);
+    setCategorias(categoriaActualizada);
+  }
+
+
   return (
     <div className="flex flex-col h-screen">
       <div className='flex flex-row flex-grow'>
@@ -65,7 +86,8 @@ export function ListasPage() {
                       descripcion={categoria.descripcion} 
                       tareas={categoria.tareas} 
                       key={index}
-                      agregarTarea={agregarTarea}/>
+                      agregarTarea={agregarTarea}
+                      eliminarTarea={eliminarTarea}/>
         ))}
       </div>
   </div>
