@@ -43,7 +43,7 @@ function Categoria(props: CategoriaProps) {
                                     type="checkbox"
                                     checked={checked}
                                     className="h-8 w-8 cursor-pointer rounded-lg border-lime-300 bg-lime-100 text-lime-600 focus:ring-lime-200"
-                                    onClick={() => {console.log("click en ",tarea)}} />                             
+                                    onChange={() => {console.log("click en ",tarea)}} />                             
                             </li>
                         </button>
                         </>
@@ -54,7 +54,10 @@ function Categoria(props: CategoriaProps) {
         
             <div className="flex justify-center py-3">
 
-            <AgregarTarea nombre={props.nombre}/>
+            <AgregarTarea   
+                            id={props.id}
+                            nombre={props.nombre}
+                            agregarTarea={props.agregarTarea}/>
     
                         </div>
 
@@ -64,10 +67,12 @@ function Categoria(props: CategoriaProps) {
 
 
 interface CategoriaProps {
+    id: number;
     nombre: string;
     descripcion?: string;
     tareas?: string[];       // TODO: Cambiar a Tarea[]
     pendientes?: string[];   // TODO: Cambiar a Tarea[]
+    agregarTarea: (tarea: string, idCateogoria: number) => void;
 }
 
 export default Categoria;
