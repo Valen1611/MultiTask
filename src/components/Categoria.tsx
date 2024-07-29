@@ -1,7 +1,8 @@
 import { useState } from "react";
 import AgregarTarea from "./AgregarTarea";
-import { v4 as uuidv4 } from 'uuid';
-
+import { v4 as uuidv4 } from "uuid";
+import { MdDelete } from "react-icons/md";
+import { FiSquare, FiCheckSquare } from "react-icons/fi";
 
 function Categoria(props: CategoriaProps) {
   const [checked, setChecked] = useState(false);
@@ -27,41 +28,29 @@ function Categoria(props: CategoriaProps) {
       <div>
         <ul>
           {props.tareas?.map((tarea, index) => (
-            <div className="columns-2 flex items-center">
-              <input
-                id={currentId}
-                type="checkbox"
-                className="h-8 w-8 cursor-pointer rounded-lg border-lime-300 bg-lime-100 text-lime-600 focus:ring-lime-200"
-                onClick={() => {
-                    console.log("ELIMINAR ", tarea, props.id);
-                    props.eliminarTarea(tarea, props.id);
-                }}
-              />
-
+            <div className="columns-2 flex">
               <button
                 className="flex hover:bg-indigo-500 w-full text-left"
                 onClick={() => {
                   setChecked(!checked);
                 }}
-                
               >
                 <li
                   key={index}
-                  className="flex justify-between w-full items-center"
+                  className="flex w-full items-center"
                 >
-                  <span>• {tarea}</span>
-                  <input
-                    id={uuidv4()}
-                    type="checkbox"
-                    checked={checked}
-                    className="h-8 w-8 cursor-pointer rounded-lg border-lime-300 bg-lime-100 text-lime-600 focus:ring-lime-200"
-                    onChange={() => {
-                      console.log("click en ", tarea);
-
-                    }}
-                  />
+                    {checked ? <FiCheckSquare className="h-8 w-8" /> : <FiSquare className="h-8 w-8" />}
+                
+                  <span className="text-left"> {tarea}</span>
                 </li>
               </button>
+              <MdDelete
+                className="h-8 w-8"
+                onClick={() => {
+                  console.log("ELIMINAR ", tarea, props.id);
+                  props.eliminarTarea(tarea, props.id);
+                }}
+              />
             </div>
           ))}
         </ul>
