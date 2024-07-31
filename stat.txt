@@ -40397,19 +40397,20 @@ Changes to be committed:
 	deleted:    node_modules/yocto-queue/license
 	deleted:    node_modules/yocto-queue/package.json
 	deleted:    node_modules/yocto-queue/readme.md
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-	modified:   .gitignore
 	modified:   package-lock.json
 	modified:   package.json
 	modified:   src/App.tsx
 	modified:   src/components/Categoria.tsx
 	modified:   src/components/Sidebar.tsx
+	new file:   src/pages/AccountPage.tsx
+	new file:   src/pages/Calendario.tsx
+	new file:   src/pages/Configuracion.tsx
+	new file:   src/pages/EditarCategorias.tsx
+	new file:   src/pages/Listas.tsx
+	new file:   stat.txt
 
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-	src/pages/
-	stat.txt
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   stat.txt
 

@@ -12,6 +12,8 @@ import { ConfiguracionPage } from './pages/Configuracion';
 import { EditarCategoriasPage } from './pages/EditarCategorias';
 import { AccountPage } from './pages/AccountPage';
 
+
+
 function App() {
 
 
