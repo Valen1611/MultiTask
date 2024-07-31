@@ -9,27 +9,43 @@ export function ListasPage() {
     id: number;
     nombre: string;
     descripcion?: string;
-    tareas?: string[];       // TODO: Cambiar a Tarea[]
+    tareas?: TareaProps[];       // TODO: Cambiar a Tarea[]
     pendientes?: string[];   // TODO: Cambiar a Tarea[]
+}
+
+interface TareaProps {
+  id: number;
+  nombre: string;
+  hecha: boolean;
 }
 
   let matematica: CategoriaProps = {
     id: 1,
     nombre: "Matematica",
     descripcion: "calculadora de derivadas: https://www.calculadora-de-derivadas.com/",
-    tareas: ["guia derivadas", "guia integrales", "limites"]
+    // tareas: ["guia derivadas", "guia integrales", "limites"]
+    tareas: [{id: 1, nombre: "guia derivadas", hecha: false}, {id: 2, nombre: "guia integrales", hecha: false}, {id: 3, nombre: "limites", hecha: false}]
   }
 
   let arquiSoftware: CategoriaProps = {
     id: 2,
     nombre: "Arqui de Software",
-    tareas: ["leer roy fielding", "aprender REST", "aprender QAs"]
+    // tareas: ["leer roy fielding", "aprender REST", "aprender QAs"]
+    tareas: [{id: 1, nombre: "leer roy fielding", hecha: false}, {id: 2, nombre: "aprender REST", hecha: false}, {id: 3, nombre: "aprender QAs", hecha: false}]
   }
 
   let BaseDeDatos: CategoriaProps = {
     id: 3,
     nombre: "Bases de Datos",
-    tareas: ["normalizacion"]
+    // tareas: ["normalizacion"]
+    tareas: [{id: 1, nombre: "normalizacion", hecha: false}]
+  }
+
+
+  function _agregarTarea(tarea: string, idCategoria: number) {
+    console.log("agregar tarea", tarea, "en", idCategoria);
+    /// aca se llamaria al back para crear la tarea
+    // 
   }
 
   //////////////////////////////////////
@@ -46,7 +62,8 @@ export function ListasPage() {
       console.log(categoria.id, idCategoria);
       if (categoria.id === idCategoria) {
         console.log("hola?")
-        categoria.tareas?.push(tarea);
+        _agregarTarea(tarea, idCategoria);
+        categoria.tareas?.push({id: 0, nombre: tarea, hecha: false}); // provisorio
       }
       return categoria;
     });
@@ -62,7 +79,7 @@ export function ListasPage() {
       console.log(categoria.id, idCategoria);
       if (categoria.id === idCategoria) {
         console.log("hola?")
-        const index = categoria.tareas?.indexOf(tarea) ?? -1;
+        const index = categoria.tareas?.findIndex((t: TareaProps) => t.nombre === tarea) ?? -1;
 
         if (index !== -1) {
           categoria.tareas?.splice(index, 1);

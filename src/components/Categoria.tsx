@@ -7,9 +7,12 @@ import { FiSquare, FiCheckSquare } from "react-icons/fi";
 function Categoria(props: CategoriaProps) {
   const [checked, setChecked] = useState(false);
   const currentId = uuidv4();
-  const handleButtonClick = () => {
+
+  const handleButtonClick = (tarea: TareaProps) => {
     setChecked(!checked);
+    tarea.hecha = !tarea.hecha;
   };
+
   return (
     <div className="p-2 box-decoration-slice bg-sky-200 text-black rounded-lg shadow">
       {/*Nombre*/}
@@ -32,23 +35,34 @@ function Categoria(props: CategoriaProps) {
               <button
                 className="flex hover:bg-indigo-500 w-full text-left"
                 onClick={() => {
-                  setChecked(!checked);
+                  handleButtonClick(tarea);
                 }}
               >
                 <li
                   key={index}
                   className="flex w-full items-center"
                 >
-                    {checked ? <FiCheckSquare className="h-8 w-8" /> : <FiSquare className="h-8 w-8" />}
+                    {tarea.hecha ? 
+                      <> 
+                        <FiCheckSquare className="h-8 w-8 text-slate-700" /> 
+                        <span className="text-left text-decoration-line: line-through text-slate-700">{tarea.nombre}</span> 
+                      </>:
+                      
+                      <>
+                        <FiSquare className="h-8 w-8" />
+                        <span className="text-left ">{tarea.nombre}</span>                       
+                      </>}
+                      
                 
-                  <span className="text-left"> {tarea}</span>
+
+
                 </li>
               </button>
               <MdDelete
                 className="h-8 w-8"
                 onClick={() => {
                   console.log("ELIMINAR ", tarea, props.id);
-                  props.eliminarTarea(tarea, props.id);
+                  props.eliminarTarea(tarea.nombre, props.id);
                 }}
               />
             </div>
@@ -66,12 +80,16 @@ function Categoria(props: CategoriaProps) {
     </div>
   );
 }
-
+interface TareaProps {
+  id: number;
+  nombre: string;
+  hecha: boolean;
+}
 interface CategoriaProps {
   id: number;
   nombre: string;
   descripcion?: string;
-  tareas?: string[]; // TODO: Cambiar a Tarea[]
+  tareas?: TareaProps[]; // TODO: Cambiar a Tarea[]
   pendientes?: string[]; // TODO: Cambiar a Tarea[]
   agregarTarea: (tarea: string, idCateogoria: number) => void;
   eliminarTarea: (tarea: string, idCateogoria: number) => void;
