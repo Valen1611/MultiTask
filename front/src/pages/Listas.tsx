@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Categoria from '../components/Categoria';
+import React from 'react';
 
 export function ListasPage() {
 

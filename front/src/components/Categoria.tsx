@@ -3,6 +3,7 @@ import AgregarTarea from "./AgregarTarea";
 import { v4 as uuidv4 } from "uuid";
 import { MdDelete } from "react-icons/md";
 import { FiSquare, FiCheckSquare } from "react-icons/fi";
+import React from "react";
 
 function Categoria(props: CategoriaProps) {
   const [checked, setChecked] = useState(false);

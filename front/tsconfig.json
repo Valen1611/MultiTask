@@ -21,6 +21,6 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "multitask_front/src"
+    "src/*"
   ]
 }

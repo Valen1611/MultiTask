@@ -9,9 +9,13 @@ export function AccountPage() {
     const fetchData = async () => {
       try {
         const result = await getHelloWorld();
-        setMessage(result);
-      } catch (error) {
+        console.log("result", result);
+        const resultString = JSON.stringify(result, null, 2);
+
+        setMessage(resultString);
+      } catch (error: any) {
         console.error("Error fetching data:", error);
+        setMessage(error.message);
       }
     };
 

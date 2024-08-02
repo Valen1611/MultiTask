@@ -1,10 +1,12 @@
 {
   "devDependencies": {
+    "@types/pg": "^8.11.6",
     "concurrently": "^8.2.2"
   },
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "concurrently \"npm run start:db\" \"npm run server\" \"npm run client\"",
+    "start:db": "sudo service postgresql start",
     "server": "cd back && npm start",
     "client": "cd front && npm start"
-}
+  }
 }
