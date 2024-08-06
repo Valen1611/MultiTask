@@ -1,70 +1,77 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Categoria from '../components/Categoria';
 import React from 'react';
+import { getCategorias, getTareas } from '../apiService';
+
+
+interface CategoriaProps {
+  id: number;
+  nombre: string;
+  descripcion?: string;
+  tareas?: TareaProps[];       // TODO: Cambiar a Tarea[]
+  pendientes?: string[];   // TODO: Cambiar a Tarea[]
+}
+
+interface TareaProps {
+id: number;
+nombre: string;
+categoria: string;
+hecha: boolean;
+}
+
+
 
 export function ListasPage() {
 
   //////////////////////////////////////
-  // Backend provisorio
-  interface CategoriaProps {
-    id: number;
-    nombre: string;
-    descripcion?: string;
-    tareas?: TareaProps[];       // TODO: Cambiar a Tarea[]
-    pendientes?: string[];   // TODO: Cambiar a Tarea[]
-}
+  // Backend 
 
-interface TareaProps {
-  id: number;
-  nombre: string;
-  hecha: boolean;
-}
+  
 
-  let matematica: CategoriaProps = {
-    id: 1,
-    nombre: "Matematica",
-    descripcion: "calculadora de derivadas: https://www.calculadora-de-derivadas.com/",
-    // tareas: ["guia derivadas", "guia integrales", "limites"]
-    tareas: [{id: 1, nombre: "guia derivadas", hecha: false}, {id: 2, nombre: "guia integrales", hecha: false}, {id: 3, nombre: "limites", hecha: false}]
-  }
+  let [categorias, setCategorias] = useState<CategoriaProps[]>([]);
+  let [tareas, setTareas] = useState<CategoriaProps[]>([]);
 
-  let arquiSoftware: CategoriaProps = {
-    id: 2,
-    nombre: "Arqui de Software",
-    // tareas: ["leer roy fielding", "aprender REST", "aprender QAs"]
-    tareas: [{id: 1, nombre: "leer roy fielding", hecha: false}, {id: 2, nombre: "aprender REST", hecha: false}, {id: 3, nombre: "aprender QAs", hecha: false}]
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const tareasResult = await getTareas();
+        setTareas(tareasResult);
+        setCategorias(tareasResult);
 
-  let BaseDeDatos: CategoriaProps = {
-    id: 3,
-    nombre: "Bases de Datos",
-    // tareas: ["normalizacion"]
-    tareas: [{id: 1, nombre: "normalizacion", hecha: false}]
-  }
+      } catch (error: any) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
+    fetchData();
+  }, []);
+  
 
-  function _agregarTarea(tarea: string, idCategoria: number) {
-    console.log("agregar tarea", tarea, "en", idCategoria);
+  
+  //////////////////////////////////////
+  
+  
+  
+  
+  function _agregarTarea(tarea: string, nombreCategoria: string) {
+    console.log("agregar tarea", tarea, "en", nombreCategoria);
     /// aca se llamaria al back para crear la tarea
+
+
+
     // 
   }
 
-  //////////////////////////////////////
-  
-  let [categorias, setCategorias] = useState<CategoriaProps[]>([matematica, arquiSoftware, BaseDeDatos]);
-  
-  
-
   //setCategorias([matematica, arquiSoftware, BaseDeDatos]);
 
-  function agregarTarea(tarea: string, idCategoria: number) {
-    console.log("agregar tarea", tarea, "en", idCategoria);
+  function agregarTarea(tarea: string, nombreCategoria: string) {
+    console.log("agregar tarea", tarea, "en", nombreCategoria);
     const categoriaActualizada = categorias?.map((categoria) => {
-      console.log(categoria.id, idCategoria);
-      if (categoria.id === idCategoria) {
+      console.log(categoria.nombre, nombreCategoria);
+      if (categoria.nombre === nombreCategoria) {
         console.log("hola?")
-        _agregarTarea(tarea, idCategoria);
-        categoria.tareas?.push({id: 0, nombre: tarea, hecha: false}); // provisorio
+        _agregarTarea(tarea, nombreCategoria);
+        categoria.tareas?.push({id: 0, nombre: tarea, categoria: nombreCategoria, hecha: false}); // provisorio
       }
       return categoria;
     });
@@ -74,11 +81,11 @@ interface TareaProps {
     
   }
 
-  function eliminarTarea(tarea: string, idCategoria: number) {
-    console.log("eliminar tarea", tarea, "en", idCategoria);
+  function eliminarTarea(tarea: string, nombreCategoria: string) {
+    console.log("eliminar tarea", tarea, "en", nombreCategoria);
     const categoriaActualizada = categorias?.map((categoria) => {
-      console.log(categoria.id, idCategoria);
-      if (categoria.id === idCategoria) {
+      console.log(categoria.nombre, nombreCategoria);
+      if (categoria.nombre === nombreCategoria) {
         console.log("hola?")
         const index = categoria.tareas?.findIndex((t: TareaProps) => t.nombre === tarea) ?? -1;
 
@@ -92,13 +99,14 @@ interface TareaProps {
 
     console.log("categoriaActualizada", categoriaActualizada);
     setCategorias(categoriaActualizada);
+    
   }
 
 
   return (
     <div className="flex flex-col h-screen">
       <div className='flex flex-row flex-grow'>
-        {categorias?.map((categoria, index) => (
+        {categorias?.map((categoria, index: React.Key | null | undefined) => (
           <Categoria  id={categoria.id}
                       nombre={categoria.nombre} 
                       descripcion={categoria.descripcion} 

@@ -63,7 +63,7 @@ function Categoria(props: CategoriaProps) {
                 className="h-8 w-8"
                 onClick={() => {
                   console.log("ELIMINAR ", tarea, props.id);
-                  props.eliminarTarea(tarea.nombre, props.id);
+                  props.eliminarTarea(tarea.nombre, props.nombre);
                 }}
               />
             </div>
@@ -81,19 +81,20 @@ function Categoria(props: CategoriaProps) {
     </div>
   );
 }
-interface TareaProps {
+export interface TareaProps {
   id: number;
   nombre: string;
+  categoria: string;
   hecha: boolean;
 }
-interface CategoriaProps {
+export interface CategoriaProps {
   id: number;
   nombre: string;
   descripcion?: string;
   tareas?: TareaProps[]; // TODO: Cambiar a Tarea[]
   pendientes?: string[]; // TODO: Cambiar a Tarea[]
-  agregarTarea: (tarea: string, idCateogoria: number) => void;
-  eliminarTarea: (tarea: string, idCateogoria: number) => void;
+  agregarTarea: (tarea: string, nombreCateogoria: string) => void;
+  eliminarTarea: (tarea: string, nombreCateogoria: string) => void;
 }
 
 export default Categoria;

@@ -1,18 +1,27 @@
 import { useEffect, useState } from "react";
-import { getHelloWorld } from "../apiService";
+import { getTareas, getCategorias } from "../apiService";
 import React from "react";
 
 export function AccountPage() {
   const [message, setMessage] = useState<string>('');
+  const [tareas, setTareas] = useState<string>('');
+  const [categorias, setCategorias] = useState<string>('');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getHelloWorld();
-        console.log("result", result);
-        const resultString = JSON.stringify(result, null, 2);
 
-        setMessage(resultString);
+
+
+        const tareasResult = await getTareas();
+        const resultString = JSON.stringify(tareasResult, null, 2);
+        setTareas(resultString);
+        
+        const categoriasResult = await getCategorias();
+        const resultString2 = JSON.stringify(categoriasResult, null, 2);
+        setCategorias(resultString2);
+
+
       } catch (error: any) {
         console.error("Error fetching data:", error);
         setMessage(error.message);
@@ -25,8 +34,11 @@ export function AccountPage() {
     return (
       <div>
           <h1>Account</h1>
+          <h2>tareas</h2>
+          <pre>{tareas}</pre>
 
-          <h2>{message}</h2>
+          <h2>categorias</h2>
+          <pre>{categorias}</pre>
       </div>
     );
   

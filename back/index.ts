@@ -16,7 +16,7 @@ app.get('/', (req: Request, res: Response) => {
 app.get('/categorias', async (req: Request, res: Response) => {
     try {
         const { rows } = await pool.query("SELECT * FROM categorias");
-        res.json(rows);
+        res.send(rows);
       } catch (err: any) {
         console.log("holaaa");
         console.error(err.message);
