@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Categoria from '../components/Categoria';
+import React from 'react';
 
 export function ListasPage() {
 
@@ -41,6 +42,12 @@ interface TareaProps {
     tareas: [{id: 1, nombre: "normalizacion", hecha: false}]
   }
 
+  let arquiSoftware2: CategoriaProps = {
+    id: 2,
+    nombre: "Arqui de Softwar222e",
+    // tareas: ["leer roy fielding", "aprender REST", "aprender QAs"]
+    tareas: [{id: 1, nombre: "leer roy fielding", hecha: false}, {id: 2, nombre: "aprender REST", hecha: false}, {id: 3, nombre: "aprender QAs", hecha: false}]
+  }
 
   function _agregarTarea(tarea: string, idCategoria: number) {
     console.log("agregar tarea", tarea, "en", idCategoria);
@@ -50,7 +57,7 @@ interface TareaProps {
 
   //////////////////////////////////////
   
-  let [categorias, setCategorias] = useState<CategoriaProps[]>([matematica, arquiSoftware, BaseDeDatos]);
+  let [categorias, setCategorias] = useState<CategoriaProps[]>([matematica, arquiSoftware, BaseDeDatos, arquiSoftware2]);
   
   
 
@@ -94,10 +101,26 @@ interface TareaProps {
   }
 
 
+  // return (
+  //   <div className="flex flex-col h-screen">
+  //     <div className='flex flex-row flex-grow'>
+  //       {categorias?.map((categoria, index) => (
+  //         <Categoria  id={categoria.id}
+  //                     nombre={categoria.nombre} 
+  //                     descripcion={categoria.descripcion} 
+  //                     tareas={categoria.tareas} 
+  //                     key={index}
+  //                     agregarTarea={agregarTarea}
+  //                     eliminarTarea={eliminarTarea}/>
+  //       ))}
+  //     </div>
+  // </div>
+  // );
   return (
-    <div className="flex flex-col h-screen">
-      <div className='flex flex-row flex-grow'>
+    <div className="h-full w-full">
+      <div className='flex h-full w-full '>
         {categorias?.map((categoria, index) => (
+           <div className='flex-grow' key={index}>
           <Categoria  id={categoria.id}
                       nombre={categoria.nombre} 
                       descripcion={categoria.descripcion} 
@@ -105,6 +128,7 @@ interface TareaProps {
                       key={index}
                       agregarTarea={agregarTarea}
                       eliminarTarea={eliminarTarea}/>
+            </div>
         ))}
       </div>
   </div>

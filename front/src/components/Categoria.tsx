@@ -3,6 +3,7 @@ import AgregarTarea from "./AgregarTarea";
 import { v4 as uuidv4 } from "uuid";
 import { MdDelete } from "react-icons/md";
 import { FiSquare, FiCheckSquare } from "react-icons/fi";
+import React from "react";
 
 function Categoria(props: CategoriaProps) {
   const [checked, setChecked] = useState(false);
@@ -14,57 +15,51 @@ function Categoria(props: CategoriaProps) {
   };
 
   return (
-    <div className="p-2 box-decoration-slice bg-sky-200 text-black rounded-lg shadow">
+    <div className="rows-2 px-0.5">
       {/*Nombre*/}
       <center>
-        <div className="inline-block px-4 py-2 bg-white rounded-md shadow">
-          <span className="font-bold text-lg text-indigo-700">
-            {props.nombre}
-          </span>
-        </div>
+        <h3 className="text-2xl font-bold text-white bg-indigo-500 rounded-md shadow-md p-2">
+          {props.nombre}
+        </h3>
+
       </center>
+    <div className="p-2  outline-2 outline-black outline h-full rounded-md">
 
       {/*Descripcion*/}
       <div className="box-decoration-slice">{props.descripcion}</div>
 
       {/*Tareas*/}
       <div>
-        <ul>
+        <ul className="list-group">
           {props.tareas?.map((tarea, index) => (
-            <div className="columns-2 flex">
-              <button
-                className="flex hover:bg-indigo-500 w-full text-left"
-                onClick={() => {
-                  handleButtonClick(tarea);
-                }}
-              >
-                <li
+            <div className="list-group-item hover:bg-indigo-400" >
+                <li 
                   key={index}
-                  className="flex w-full items-center"
+                  className="column flex justify-between items-center"
+                  onClick={() => {handleButtonClick(tarea);}}
                 >
                     {tarea.hecha ? 
                       <> 
                         <FiCheckSquare className="h-8 w-8 text-slate-700" /> 
-                        <span className="text-left text-decoration-line: line-through text-slate-700">{tarea.nombre}</span> 
+                        <h6 className=" text-decoration-line: line-through text-slate-700">{tarea.nombre}</h6> 
                       </>:
-                      
                       <>
                         <FiSquare className="h-8 w-8" />
-                        <span className="text-left ">{tarea.nombre}</span>                       
+                        <h6 className=" ">{tarea.nombre}</h6>                       
                       </>}
                       
                 
-
-
-                </li>
-              </button>
               <MdDelete
-                className="h-8 w-8"
+                className="h-8 w-8 hover:bg-indigo-500"
                 onClick={() => {
                   console.log("ELIMINAR ", tarea, props.id);
                   props.eliminarTarea(tarea.nombre, props.id);
                 }}
               />
+
+
+                </li>
+              
             </div>
           ))}
         </ul>
@@ -77,6 +72,7 @@ function Categoria(props: CategoriaProps) {
           agregarTarea={props.agregarTarea}
         />
       </div>
+    </div>
     </div>
   );
 }

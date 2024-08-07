@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -12,7 +13,7 @@ function AgregarTarea(props: any) {
   return (
     <>
       <button
-            className="w-full h-8 cursor-pointer rounded-lg border-lime-300 bg-lime-100 text-lime-600 focus:ring-lime-200"
+            className="w-full h-8 cursor-pointer rounded-lg border-indigo-300 bg-indigo-100 text-indigo-600 focus:ring-indigo-200"
             onClick={handleShow}
             >
             Agregar tarea
