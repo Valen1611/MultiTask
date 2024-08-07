@@ -35,6 +35,28 @@ app.get('/tareas', async (req: Request, res: Response) => {
 
 })
 
+
+app.post('/tareas', async (req: Request, res: Response) => {
+    try {
+        const { nombre, categoria } = req.body;
+
+        console.log("nombre", nombre, "categoria", categoria);
+        
+        if (!nombre || !categoria) {
+          return res.status(400).json({ error: 'Faltan parámetros necesarios' });
+        }
+        
+        const newTarea = await pool.query(
+          'INSERT INTO tareas (nombretarea, categoria) VALUES($1, $2) RETURNING *',
+          [nombre, categoria]
+        );
+        res.json(newTarea.rows[0]);
+      } catch (err: any) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+      }
+})
+
 app.listen(port, () => {
 console.log(`App listening at http://localhost:${port}`)
 })

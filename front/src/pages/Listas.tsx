@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Categoria from '../components/Categoria';
 import React from 'react';
-import { getCategorias, getTareas } from '../apiService';
+import { _agregarTarea, _getCategorias } from '../apiService';
 
 
 interface CategoriaProps {
@@ -25,20 +25,16 @@ export function ListasPage() {
 
   //////////////////////////////////////
   // Backend 
-
-  
-
   let [categorias, setCategorias] = useState<CategoriaProps[]>([]);
-  let [tareas, setTareas] = useState<CategoriaProps[]>([]);
-
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const tareasResult = await getTareas();
-        setTareas(tareasResult);
+        const tareasResult = await _getCategorias();
         setCategorias(tareasResult);
 
       } catch (error: any) {
+
         console.error("Error fetching data:", error);
       }
     };
@@ -53,14 +49,7 @@ export function ListasPage() {
   
   
   
-  function _agregarTarea(tarea: string, nombreCategoria: string) {
-    console.log("agregar tarea", tarea, "en", nombreCategoria);
-    /// aca se llamaria al back para crear la tarea
 
-
-
-    // 
-  }
 
   //setCategorias([matematica, arquiSoftware, BaseDeDatos]);
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTareas, getCategorias } from "../apiService";
+import {  _getCategorias } from "../apiService";
 import React from "react";
 
 export function AccountPage() {
@@ -10,14 +10,8 @@ export function AccountPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-
-
-
-        const tareasResult = await getTareas();
-        const resultString = JSON.stringify(tareasResult, null, 2);
-        setTareas(resultString);
         
-        const categoriasResult = await getCategorias();
+        const categoriasResult = await _getCategorias();
         const resultString2 = JSON.stringify(categoriasResult, null, 2);
         setCategorias(resultString2);
 

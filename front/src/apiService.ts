@@ -3,21 +3,9 @@ import { CategoriaProps, TareaProps } from './components/Categoria';
 
 const API_URL = 'http://localhost:3001'; // URL del back-end
 
-export const getCategorias = async () => {
-  try {
-    const categorias = await axios.get(`${API_URL}/categorias`);
-    return categorias.data;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    throw error;
-  }
-};
 
-export const getTareas = async () => {
+export const _getCategorias = async () => {
   try {
-    // const tareas = await axios.get(`${API_URL}/tareas`);
-    
-    
     const categoriasResponse = await axios.get(`${API_URL}/categorias`);
     const tareasResponse = await axios.get(`${API_URL}/tareas`);
 
@@ -50,4 +38,21 @@ export const getTareas = async () => {
   }
 }
 
+
+export const _agregarTarea = async (tarea: string, nombreCategoria: string) => {
+
+  try {
+    const response = await axios.post(`${API_URL}/tareas`, {
+      nombre: tarea,
+      categoria: nombreCategoria,
+    });
+
+    return response.data;
+
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+
+}
 
