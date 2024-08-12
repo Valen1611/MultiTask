@@ -22,7 +22,7 @@ interface TareaProps {
 
   let matematica: CategoriaProps = {
     id: 1,
-    nombre: "Matematica",
+    nombre: "TDA",
     descripcion: "calculadora de derivadas: https://www.calculadora-de-derivadas.com/",
     // tareas: ["guia derivadas", "guia integrales", "limites"]
     tareas: [{id: 1, nombre: "guia derivadas", hecha: false}, {id: 2, nombre: "guia integrales", hecha: false}, {id: 3, nombre: "limites", hecha: false}]
@@ -30,21 +30,21 @@ interface TareaProps {
 
   let arquiSoftware: CategoriaProps = {
     id: 2,
-    nombre: "Arqui de Software",
+    nombre: "Concu",
     // tareas: ["leer roy fielding", "aprender REST", "aprender QAs"]
     tareas: [{id: 1, nombre: "leer roy fielding", hecha: false}, {id: 2, nombre: "aprender REST", hecha: false}, {id: 3, nombre: "aprender QAs", hecha: false}]
   }
 
   let BaseDeDatos: CategoriaProps = {
     id: 3,
-    nombre: "Bases de Datos",
+    nombre: "Gestion",
     // tareas: ["normalizacion"]
     tareas: [{id: 1, nombre: "normalizacion", hecha: false}]
   }
 
   let arquiSoftware2: CategoriaProps = {
     id: 2,
-    nombre: "Arqui de Softwar222e",
+    nombre: "EBT",
     // tareas: ["leer roy fielding", "aprender REST", "aprender QAs"]
     tareas: [{id: 1, nombre: "leer roy fielding", hecha: false}, {id: 2, nombre: "aprender REST", hecha: false}, {id: 3, nombre: "aprender QAs", hecha: false}]
   }
@@ -117,10 +117,11 @@ interface TareaProps {
   // </div>
   // );
   return (
-    <div className="h-full w-full">
-      <div className='flex h-full w-full '>
+    <div className="h-[calc(100vh-100px)] w-full">
+      <div className="flex h-[calc(100vh-96px)] w-full bg-gradient-to-t from-indigo-400 to-teal-200">  
+        {/* Esto esta horrible, pero asi queda ajustado */}
         {categorias?.map((categoria, index) => (
-           <div className='flex-grow' key={index}>
+           <div className='flex-grow ' key={index}>
           <Categoria  id={categoria.id}
                       nombre={categoria.nombre} 
                       descripcion={categoria.descripcion} 

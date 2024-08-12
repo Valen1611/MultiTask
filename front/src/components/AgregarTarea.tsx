@@ -13,7 +13,7 @@ function AgregarTarea(props: any) {
   return (
     <>
       <button
-            className="w-full h-8 cursor-pointer rounded-lg border-indigo-300 bg-indigo-100 text-indigo-600 focus:ring-indigo-200"
+            className="w-full h-8 cursor-pointer rounded-lg bg-teal-200 text-indigo-800 hover:bg-teal-300 shadow-md"
             onClick={handleShow}
             >
             Agregar tarea

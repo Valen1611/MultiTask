@@ -15,15 +15,15 @@ function Categoria(props: CategoriaProps) {
   };
 
   return (
-    <div className="rows-2 px-0.5">
+    <div className="rows-2 px-0.5 ">
       {/*Nombre*/}
       <center>
-        <h3 className="text-2xl font-bold text-white bg-indigo-500 rounded-md shadow-md p-2">
+        <h3 className="text-2xl font-bold text-white bg-indigo-600 rounded-md shadow-md p-1">
           {props.nombre}
         </h3>
-
       </center>
-    <div className="p-2  outline-2 outline-black outline h-full rounded-md">
+
+    <div className="p-2 h-full rounded-md shadow-md bg-gradient-to-b from-indigo-400 to-teal-500">
 
       {/*Descripcion*/}
       <div className="box-decoration-slice">{props.descripcion}</div>
@@ -32,10 +32,10 @@ function Categoria(props: CategoriaProps) {
       <div>
         <ul className="list-group">
           {props.tareas?.map((tarea, index) => (
-            <div className="list-group-item hover:bg-indigo-400" >
+            <div className="list-group-item !bg-teal-100 hover:!bg-teal-200 !outline-sky" >
                 <li 
                   key={index}
-                  className="column flex justify-between items-center"
+                  className="column flex justify-between items-center "
                   onClick={() => {handleButtonClick(tarea);}}
                 >
                     {tarea.hecha ? 
@@ -50,7 +50,7 @@ function Categoria(props: CategoriaProps) {
                       
                 
               <MdDelete
-                className="h-8 w-8 hover:bg-indigo-500"
+                className="h-8 w-8 hover:bg-teal-100 rounded"
                 onClick={() => {
                   console.log("ELIMINAR ", tarea, props.id);
                   props.eliminarTarea(tarea.nombre, props.id);
